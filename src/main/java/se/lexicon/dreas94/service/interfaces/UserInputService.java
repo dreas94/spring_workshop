@@ -1,4 +1,4 @@
-package se.lexicon.dreas94.service;
+package se.lexicon.dreas94.service.interfaces;
 
 public interface UserInputService
 {

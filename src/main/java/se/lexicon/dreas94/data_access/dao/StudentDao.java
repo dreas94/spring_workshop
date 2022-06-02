@@ -4,15 +4,14 @@ import se.lexicon.dreas94.exception.DataNotFoundException;
 import se.lexicon.dreas94.models.Student;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface StudentDao
 {
     Student save(Student student);
 
-    Optional<Student> find(Long id);
+    Student find(int id) throws DataNotFoundException;
 
     List<Student> findAll();
 
-    void delete(long id) throws DataNotFoundException;
+    Student delete(int id) throws DataNotFoundException;
 }

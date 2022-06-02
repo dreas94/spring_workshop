@@ -1,7 +1,8 @@
-package se.lexicon.dreas94.service;
+package se.lexicon.dreas94.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import se.lexicon.dreas94.service.interfaces.UserInputService;
 
 import java.util.Scanner;
 

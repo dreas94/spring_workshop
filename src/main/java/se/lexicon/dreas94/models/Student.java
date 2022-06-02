@@ -2,15 +2,21 @@ package se.lexicon.dreas94.models;
 
 public class Student
 {
-    private long id;
+    private int id;
     private String name;
+
+    public Student(int id, String name)
+    {
+        setId(id);
+        setName(name);
+    }
 
     public long getId()
     {
         return id;
     }
 
-    public void setId(long id)
+    public void setId(int id)
     {
         this.id = id;
     }
