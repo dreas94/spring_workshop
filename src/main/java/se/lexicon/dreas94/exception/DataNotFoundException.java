@@ -1,4 +1,4 @@
-package se.lexicon.dreas94.data_access.exception;
+package se.lexicon.dreas94.exception;
 
 public class DataNotFoundException extends Exception
 {
