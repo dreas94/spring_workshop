@@ -30,12 +30,11 @@ public class StudentDaoListImpl implements StudentDao
     }
 
     @Override
-    public Student find(long id) throws DataNotFoundException
+    public Optional<Student> find(Long id)
     {
-        Optional<Student> result = findById(id);
-        if (!result.isPresent()) throw new DataNotFoundException("Student not found");
+        if (id == null) throw new IllegalArgumentException("id is null");
 
-        return result.get();
+        return storage.stream().filter(account -> account.getId() == id).findFirst();
     }
 
     @Override
@@ -47,15 +46,8 @@ public class StudentDaoListImpl implements StudentDao
     @Override
     public void delete(long id) throws DataNotFoundException
     {
-        Optional<Student> result = findById(id);
+        Optional<Student> result = find(id);
         if (!result.isPresent()) throw new DataNotFoundException("Student not found");
         else storage.remove(result.get());
-    }
-
-    private Optional<Student> findById(Long id)
-    {
-        if (id == null) throw new IllegalArgumentException("id is null");
-
-        return storage.stream().filter(account -> account.getId() == id).findFirst();
     }
 }
