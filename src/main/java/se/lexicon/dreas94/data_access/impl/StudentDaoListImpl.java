@@ -1,9 +1,9 @@
 package se.lexicon.dreas94.data_access.impl;
 
 import org.springframework.stereotype.Component;
-import se.lexicon.dreas94.data_access.StudentDao;
-import se.lexicon.dreas94.exception.DataNotFoundException;
+import se.lexicon.dreas94.data_access.dao.StudentDao;
 import se.lexicon.dreas94.data_access.sequencer.StudentIdGenerator;
+import se.lexicon.dreas94.exception.DataNotFoundException;
 import se.lexicon.dreas94.models.Student;
 
 import java.util.ArrayList;
