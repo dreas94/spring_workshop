@@ -5,13 +5,22 @@ public class Student
     private int id;
     private String name;
 
+    public Student()
+    {
+    }
+
+    public Student(String name)
+    {
+        setName(name);
+    }
+
     public Student(int id, String name)
     {
         setId(id);
         setName(name);
     }
 
-    public long getId()
+    public int getId()
     {
         return id;
     }

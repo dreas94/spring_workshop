@@ -26,7 +26,12 @@ public class StudentManagementConsoleImpl implements StudentManagment
     @Override
     public Student create()
     {
-        return new Student(scannerService.getInt(), scannerService.getString());
+        System.out.println("Creating Student");
+        System.out.println("Student Id: ");
+        int nextId = scannerService.getInt();
+        System.out.println("Student Name: ");
+        String nextName = scannerService.getString();
+        return new Student(nextId, nextName);
     }
 
     @Override

@@ -23,6 +23,7 @@ public class StudentDaoListImpl implements StudentDao
     public Student save(Student student)
     {
         if (student == null) throw new IllegalArgumentException("student is null");
+        if(findById(student.getId()).isPresent()) throw new IllegalArgumentException("student id already exists");
         storage.add(student);
         return student;
     }
