@@ -2,7 +2,6 @@ package se.lexicon.dreas94.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import se.lexicon.dreas94.util.UserInputService;
 
 import java.util.Scanner;
 
@@ -24,17 +23,16 @@ public class ScannerInputService implements UserInputService
 
         do
         {
-            if(scanner.hasNextLine())
+            if (scanner.hasNextLine())
             {
                 nextLine = scanner.nextLine();
-            }
-            else
+            } else
             {
                 System.out.println("That's not a String!");
                 scanner.next();
                 System.out.println("Try again!: ");
             }
-        }while(nextLine == null);
+        } while (nextLine == null);
 
         return nextLine;
     }
@@ -46,17 +44,16 @@ public class ScannerInputService implements UserInputService
 
         do
         {
-            if(scanner.hasNextInt())
+            if (scanner.hasNextInt())
             {
                 nextInt = scanner.nextInt();
-            }
-            else
+            } else
             {
                 System.out.println("That's not a Integer!");
                 scanner.next();
                 System.out.println("Try again!: ");
             }
-        }while(nextInt == -1);
+        } while (nextInt == -1);
 
         return nextInt;
     }

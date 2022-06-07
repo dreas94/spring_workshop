@@ -1,8 +1,6 @@
 package se.lexicon.dreas94.service;
 
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import se.lexicon.dreas94.config.ComponentScanConfig;
-import se.lexicon.dreas94.data_access.dao.StudentDao;
-import se.lexicon.dreas94.exception.DataNotFoundException;
 import se.lexicon.dreas94.models.Student;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ComponentScanConfig.class)
@@ -57,7 +55,7 @@ public class StudentManagementTest
         int actualSize = testObject.findAll().size();
         int expectedSize = 2;
 
-        assertEquals(expectedSize,actualSize);
+        assertEquals(expectedSize, actualSize);
     }
 
     @Test
@@ -69,6 +67,6 @@ public class StudentManagementTest
         int actualSize = testObject.findAll().size();
         int expectedSize = 1;
 
-        assertEquals(expectedSize,actualSize);
+        assertEquals(expectedSize, actualSize);
     }
 }

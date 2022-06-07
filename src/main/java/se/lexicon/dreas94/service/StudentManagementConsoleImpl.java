@@ -33,14 +33,14 @@ public class StudentManagementConsoleImpl implements StudentManagement
     @Override
     public Student save(Student student)
     {
-        if (student == null ) throw new IllegalArgumentException("Student is null");
+        if (student == null) throw new IllegalArgumentException("Student is null");
         return studentDao.save(student);
     }
 
     @Override
     public Student find(int id)
     {
-        if (id <= 0 ) throw new IllegalArgumentException("id is not valid");
+        if (id <= 0) throw new IllegalArgumentException("id is not valid");
         try
         {
             return studentDao.find(id);

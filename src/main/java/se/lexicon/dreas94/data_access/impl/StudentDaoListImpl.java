@@ -53,7 +53,8 @@ public class StudentDaoListImpl implements StudentDao
         return student;
     }
 
-    public void clear(){
+    public void clear()
+    {
         storage.clear();
     }
 

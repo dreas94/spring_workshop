@@ -1,7 +1,5 @@
 package se.lexicon.dreas94.dao;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +11,9 @@ import se.lexicon.dreas94.config.ComponentScanConfig;
 import se.lexicon.dreas94.data_access.dao.StudentDao;
 import se.lexicon.dreas94.exception.DataNotFoundException;
 import se.lexicon.dreas94.models.Student;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ComponentScanConfig.class)
@@ -44,11 +45,14 @@ public class StudentDaoTest
     @DisplayName("test find id 1 with the result and student1 being equal")
     public void test_findId1()
     {
-        try {
+        try
+        {
             Student expectedData = new Student(1, "Andreas Eriksson");
             Student actualData = testObject.find(1);
             assertEquals(expectedData, actualData);
-        } catch (DataNotFoundException e) {
+        }
+        catch (DataNotFoundException e)
+        {
             System.out.println(e.getObjectName());
             System.out.println(e.getMessage());
         }
@@ -61,7 +65,7 @@ public class StudentDaoTest
         int actualSize = testObject.findAll().size();
         int expectedSize = 2;
 
-        assertEquals(expectedSize,actualSize);
+        assertEquals(expectedSize, actualSize);
     }
 
     @Test
@@ -80,16 +84,18 @@ public class StudentDaoTest
         int actualSize = testObject.findAll().size();
         int expectedSize = 1;
 
-        assertEquals(expectedSize,actualSize);
+        assertEquals(expectedSize, actualSize);
     }
 
     @Test
-    void find_throws_DataNotFoundException(){
+    void find_throws_DataNotFoundException()
+    {
         assertThrows(DataNotFoundException.class, () -> testObject.find(10));
     }
 
     @Test
-    void delete_throws_DataNotFoundException(){
+    void delete_throws_DataNotFoundException()
+    {
         assertThrows(DataNotFoundException.class, () -> testObject.delete(10));
     }
 
