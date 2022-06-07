@@ -2,6 +2,7 @@ package se.lexicon.dreas94.data_access.impl;
 
 import org.springframework.stereotype.Component;
 import se.lexicon.dreas94.data_access.dao.StudentDao;
+import se.lexicon.dreas94.data_access.sequencer.StudentIdSequencer;
 import se.lexicon.dreas94.exception.DataNotFoundException;
 import se.lexicon.dreas94.models.Student;
 
@@ -23,7 +24,7 @@ public class StudentDaoListImpl implements StudentDao
     public Student save(Student student)
     {
         if (student == null) throw new IllegalArgumentException("student is null");
-        if(findById(student.getId()).isPresent()) throw new IllegalArgumentException("student id already exists");
+        student.setId(StudentIdSequencer.nextId());
         storage.add(student);
         return student;
     }
@@ -31,9 +32,10 @@ public class StudentDaoListImpl implements StudentDao
     @Override
     public Student find(int id) throws DataNotFoundException
     {
-        Optional<Student> result = findById(id);
-        if (!result.isPresent()) throw new DataNotFoundException("Student not found");
-        return result.get();
+        return storage.stream()
+                .filter(student -> student.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new DataNotFoundException("Not Found", "Student"));
     }
 
     @Override
@@ -45,17 +47,14 @@ public class StudentDaoListImpl implements StudentDao
     @Override
     public Student delete(int id) throws DataNotFoundException
     {
-        Optional<Student> result = findById(id);
-        if (!result.isPresent()) throw new DataNotFoundException("Student not found");
-        else storage.remove(result.get());
+        Student student = find(id);
+        Optional.ofNullable(student).ifPresent(storage::remove);
 
-        return result.get();
+        return student;
     }
 
-    public Optional<Student> findById(Integer id)
-    {
-        if (id == null) throw new IllegalArgumentException("id is null");
-
-        return storage.stream().filter(account -> account.getId() == id).findFirst();
+    public void clear(){
+        storage.clear();
     }
+
 }

@@ -1,17 +1,16 @@
-package se.lexicon.dreas94.service.impl;
+package se.lexicon.dreas94.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.lexicon.dreas94.data_access.dao.StudentDao;
 import se.lexicon.dreas94.exception.DataNotFoundException;
 import se.lexicon.dreas94.models.Student;
-import se.lexicon.dreas94.service.interfaces.StudentManagment;
-import se.lexicon.dreas94.service.interfaces.UserInputService;
+import se.lexicon.dreas94.util.UserInputService;
 
 import java.util.List;
 
 @Component
-public class StudentManagementConsoleImpl implements StudentManagment
+public class StudentManagementConsoleImpl implements StudentManagement
 {
     UserInputService scannerService;
     StudentDao studentDao;
@@ -27,49 +26,44 @@ public class StudentManagementConsoleImpl implements StudentManagment
     public Student create()
     {
         System.out.println("Creating Student");
-        System.out.println("Student Id: ");
-        int nextId = scannerService.getInt();
         System.out.println("Student Name: ");
-        String nextName = scannerService.getString();
-        return new Student(nextId, nextName);
+        return save(new Student(scannerService.getString()));
     }
 
     @Override
     public Student save(Student student)
     {
+        if (student == null ) throw new IllegalArgumentException("Student is null");
         return studentDao.save(student);
     }
 
     @Override
     public Student find(int id)
     {
-        Student student;
+        if (id <= 0 ) throw new IllegalArgumentException("id is not valid");
         try
         {
-            student = studentDao.find(id);
+            return studentDao.find(id);
         }
         catch (DataNotFoundException e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
-
-        return student;
     }
 
     @Override
     public Student remove(int id)
     {
-        Student student;
         try
         {
-            student = studentDao.delete(id);
+            return studentDao.delete(id);
         }
         catch (DataNotFoundException e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
-
-        return student;
     }
 
     @Override

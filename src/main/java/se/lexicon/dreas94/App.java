@@ -2,9 +2,7 @@ package se.lexicon.dreas94;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import se.lexicon.dreas94.config.ComponentScanConfig;
-import se.lexicon.dreas94.data_access.dao.StudentDao;
-import se.lexicon.dreas94.service.interfaces.StudentManagment;
-import se.lexicon.dreas94.service.interfaces.UserInputService;
+import se.lexicon.dreas94.service.StudentManagement;
 
 public class App
 {
@@ -12,7 +10,7 @@ public class App
     {
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ComponentScanConfig.class))
         {
-            StudentManagment studentDao = context.getBean(StudentManagment.class);
+            StudentManagement studentDao = context.getBean(StudentManagement.class);
         }
     }
 }

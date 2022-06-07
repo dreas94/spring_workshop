@@ -1,4 +1,5 @@
-package se.lexicon.dreas94.dao;
+package se.lexicon.dreas94.service;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,10 +17,10 @@ import se.lexicon.dreas94.models.Student;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ComponentScanConfig.class)
-public class StudentDaoTest
+public class StudentManagementTest
 {
     @Autowired
-    StudentDao testObject;
+    StudentManagement testObject;
 
     @BeforeEach
     public void setUp()
@@ -44,19 +45,14 @@ public class StudentDaoTest
     @DisplayName("test find id 1 with the result and student1 being equal")
     public void test_findId1()
     {
-        try {
-            Student expectedData = new Student(1, "Andreas Eriksson");
-            Student actualData = testObject.find(1);
-            assertEquals(expectedData, actualData);
-        } catch (DataNotFoundException e) {
-            System.out.println(e.getObjectName());
-            System.out.println(e.getMessage());
-        }
+        Student expectedData = new Student(1, "Andreas Eriksson");
+        Student actualData = testObject.find(1);
+        assertEquals(expectedData, actualData);
     }
 
     @Test
-    @DisplayName("test get all method from student dao with result 2")
-    public void test_getAll()
+    @DisplayName("test findAll method from StudentManagement with result 2")
+    public void test_findAll()
     {
         int actualSize = testObject.findAll().size();
         int expectedSize = 2;
@@ -65,32 +61,14 @@ public class StudentDaoTest
     }
 
     @Test
-    @DisplayName("test get delete method from student, then get all method from student dao with result 1")
-    public void test_delete()
+    @DisplayName("test remove method from student, then get all method from StudentManagement with result 1")
+    public void test_remove()
     {
-        try
-        {
-            testObject.delete(1);
-        }
-        catch (DataNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
+        testObject.remove(1);
 
         int actualSize = testObject.findAll().size();
         int expectedSize = 1;
 
         assertEquals(expectedSize,actualSize);
     }
-
-    @Test
-    void find_throws_DataNotFoundException(){
-        assertThrows(DataNotFoundException.class, () -> testObject.find(10));
-    }
-
-    @Test
-    void delete_throws_DataNotFoundException(){
-        assertThrows(DataNotFoundException.class, () -> testObject.delete(10));
-    }
-
 }

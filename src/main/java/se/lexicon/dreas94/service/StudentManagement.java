@@ -1,10 +1,10 @@
-package se.lexicon.dreas94.service.interfaces;
+package se.lexicon.dreas94.service;
 
 import se.lexicon.dreas94.models.Student;
 
 import java.util.List;
 
-public interface StudentManagment
+public interface StudentManagement
 {
     Student create();
     Student save(Student student);
