@@ -32,7 +32,7 @@ public class StudentDaoTest
     }
 
     @Test
-    @DisplayName("Given Student student successfully create and successfully equal")
+    @DisplayName("given Student student successfully create and successfully equal")
     void test_save()
     {
         Student expectedData = new Student(3, "Mehrdad Javan");
